@@ -2,9 +2,6 @@ package io.hhplus.tdd.point
 
 import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.Positive
-import java.util.concurrent.ConcurrentHashMap
-import java.util.concurrent.locks.ReentrantLock
-
 
 data class UserPoint(
     @field:Positive(message = "id는 0보다 커야 합니다.")

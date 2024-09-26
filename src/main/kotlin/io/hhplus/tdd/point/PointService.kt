@@ -18,7 +18,7 @@ class PointService(
     private val log = LoggerFactory.getLogger(javaClass)
 
     fun findPointById(id: Long): UserPoint {
-        return userPointTable.selectById(id);
+        return userPointTable.selectById(id)
     }
 
     fun findAllHistoriesById(id: Long): List<PointHistory> {
@@ -38,7 +38,7 @@ class PointService(
             try {
                 result = userPointTable.insertOrUpdate(id, expectedAmount)
                 pointHistoryTable.insert(result.id, expectedAmount, TransactionType.CHARGE, result.updateMillis)
-                log.info("Point: " + result.point);
+                log.info("Point: " + result.point)
             } catch (e: Throwable) {
                 log.warn("Exception: {}", e.message, e)
             }
