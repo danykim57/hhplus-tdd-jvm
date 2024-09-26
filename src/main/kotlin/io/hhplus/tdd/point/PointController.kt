@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/point")
-class PointController {
+class PointController(
+    private val pointService: PointService
+) {
     private val logger: Logger = LoggerFactory.getLogger(javaClass)
 
     /**
@@ -16,7 +18,7 @@ class PointController {
     fun point(
         @PathVariable id: Long,
     ): UserPoint {
-        return UserPoint(0, 0, 0)
+        return pointService.findPointById(id)
     }
 
     /**
@@ -26,7 +28,7 @@ class PointController {
     fun history(
         @PathVariable id: Long,
     ): List<PointHistory> {
-        return emptyList()
+        return pointService.findAllHistoriesById(id)
     }
 
     /**
@@ -37,17 +39,18 @@ class PointController {
         @PathVariable id: Long,
         @RequestBody amount: Long,
     ): UserPoint {
-        return UserPoint(0, 0, 0)
+        return pointService.charge(id, amount)
     }
 
     /**
      * TODO - 특정 유저의 포인트를 사용하는 기능을 작성해주세요.
+     * 들어오는 amount
      */
     @PatchMapping("{id}/use")
     fun use(
         @PathVariable id: Long,
         @RequestBody amount: Long,
     ): UserPoint {
-        return UserPoint(0, 0, 0)
+        return pointService.use(id, amount)
     }
 }
