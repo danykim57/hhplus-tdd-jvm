@@ -31,8 +31,8 @@ class PointControllerTest(val mockMvc: MockMvc) {
         val numberOfThreads = 10
         val latch = CountDownLatch(numberOfThreads)
         val executorService = Executors.newFixedThreadPool(numberOfThreads)
-        val appliedNum = 1;
-        var originalPoint = 100;
+        val appliedNum = 1
+        var originalPoint = 100
 
         mockMvc.perform(
             patch("/point/1/charge").content(objectMapper.writeValueAsString(originalPoint))
@@ -72,8 +72,8 @@ class PointControllerTest(val mockMvc: MockMvc) {
         val numberOfThreads = 10
         val latch = CountDownLatch(numberOfThreads)
         val executorService = Executors.newFixedThreadPool(numberOfThreads)
-        val incrementNum = 1;
-        var originalPoint = 0;
+        val incrementNum = 1
+        var originalPoint = 0
 
         for (i in 0 until numberOfThreads) {
             executorService.submit {
